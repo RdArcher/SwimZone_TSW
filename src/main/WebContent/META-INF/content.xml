@@ -1,0 +1,12 @@
+<Context>
+	<resource name="jdbc/SwimZoneDB"
+  			  auth="Container"
+  			  type="javax.sql.DataSource"
+  			  maxTotal="20"
+  			  maxIdle="10"
+  			  maxWaitMillis="10000"
+  			  username="root"
+  			  password="Viaroma127"
+  			  driverClassName="com.mysql.cj.jdbc.Driver"
+  			  url="jdbc:mysql://localhost:3306/swimzone_db"></resource>
+	</Context>
