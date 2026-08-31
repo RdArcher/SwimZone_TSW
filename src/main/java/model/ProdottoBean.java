@@ -31,7 +31,7 @@ public class ProdottoBean implements Serializable{
     }
 
     public void setNome(String nome) {
-        this.nome = name;
+        this.nome = nome;
     }
 
     public String getDescrizione() {
