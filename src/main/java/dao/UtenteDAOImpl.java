@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 import model.UtenteBean;
 
 public class UtenteDAOImpl implements UtenteDAO{
-	private static final String TABELLA = "Utente";
 	private DataSource ds = null;
 	
 	public UtenteDAOImpl(DataSource ds) {
@@ -20,7 +19,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 	
 	@Override
 	public synchronized void SalvaUtente(UtenteBean utente) throws SQLException{
-		String insertSQL = "INSERT INTO " +TABELLA+ " ( nome, cognome, email, password, ruolo, indirizzo_spedizione) VALUES(?, ?, ?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO Utente ( nome, cognome, email, password, ruolo, indirizzo_spedizione) VALUES(?, ?, ?, ?, ?, ?)";
 		
 		try (Connection connection = ds.getConnection();
 				PreparedStatement statement = connection.prepareStatement(insertSQL)){
@@ -37,7 +36,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 	
 	@Override
 	public synchronized boolean EliminaUtente(int id_utente) throws SQLException{
-		String deleteSQL = "DELETE FROM "+TABELLA+" WHERE id_utente= ?";
+		String deleteSQL = "DELETE FROM Utente WHERE id_utente= ?";
 		try(Connection connection = ds.getConnection();
 				PreparedStatement statement = connection.prepareStatement(deleteSQL)){
 			statement.setInt(1, id_utente);
@@ -49,7 +48,7 @@ public class UtenteDAOImpl implements UtenteDAO{
     @Override
     public synchronized UtenteBean CercaUtente(int id_utente) throws SQLException {
     	UtenteBean utente = new UtenteBean();
-        String selectSQL = "SELECT * FROM " +TABELLA+ " WHERE id_utente = ?";
+        String selectSQL = "SELECT * FROM Utente WHERE id_utente = ?";
         try (Connection connection = ds.getConnection();
         		PreparedStatement statement = connection.prepareStatement(selectSQL)) {
         	statement.setInt(1, id_utente);
@@ -71,7 +70,7 @@ public class UtenteDAOImpl implements UtenteDAO{
     @Override
     public synchronized Collection<UtenteBean> Utente(String order) throws SQLException{
     	List<UtenteBean> utenti = new LinkedList<>();
-    	String selectSQL = "SELECT * FROM "+TABELLA;
+    	String selectSQL = "SELECT * FROM Utente";
     	if(order.equals("nome") || order.equals("cognome") || order.equals("email")) {
     		selectSQL+=" ORDER BY "+order;
     	}
