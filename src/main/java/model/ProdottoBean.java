@@ -26,7 +26,7 @@ public class ProdottoBean implements Serializable{
         this.id_prodotto = id_prodotto;
     }
 
-    public String getName() {
+    public String getNome() {
         return nome;
     }
 
@@ -56,6 +56,14 @@ public class ProdottoBean implements Serializable{
 
     public void setQuantita(int quantita) {
         this.quantita = quantita;
+    }
+    
+    public boolean getStato() {
+    	return attivo;
+    }
+    
+    public boolean setStato(boolean attivo) {
+    	return this.attivo=attivo;
     }
 
     public String getPath() {
