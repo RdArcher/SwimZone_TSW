@@ -7,11 +7,11 @@ import model.UtenteBean;
 
 public interface UtenteDAO {
 
-	public void doSave(UtenteBean utente) throws SQLException;
+	public void SalvaUtente(UtenteBean utente) throws SQLException;
 	
-	public boolean doDelete(int id_utente) throws SQLException;
+	public boolean EliminaUtente(int id_utente) throws SQLException;
 	
-	public UtenteBean doRetrieveByKey(int id_utente) throws SQLException;
+	public UtenteBean CercaID(int id_utente) throws SQLException;
 	
-	public Collection<UtenteBean> doRetrieveAll(String order) throws SQLException;
+	public Collection<UtenteBean> Utente(String order) throws SQLException;
 }

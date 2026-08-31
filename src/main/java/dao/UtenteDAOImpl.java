@@ -19,7 +19,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 	}
 	
 	@Override
-	public synchronized void doSave(UtenteBean utente) throws SQLException{
+	public synchronized void SalvaUtente(UtenteBean utente) throws SQLException{
 		String insertSQL = "INSERT INTO " +TABELLA+ " ( nome, cognome, email, password, ruolo, indirizzo_spedizione) VALUES(?, ?, ?, ?, ?, ?)";
 		
 		try (Connection connection = ds.getConnection();
@@ -36,7 +36,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 	}
 	
 	@Override
-	public synchronized boolean doDelete(int id_utente) throws SQLException{
+	public synchronized boolean EliminaUtente(int id_utente) throws SQLException{
 		String deleteSQL = "DELETE FROM "+TABELLA+" WHERE id_utente= ?";
 		try(Connection connection = ds.getConnection();
 				PreparedStatement statement = connection.prepareStatement(deleteSQL)){
@@ -47,7 +47,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 	}
 
     @Override
-    public synchronized UtenteBean doRetrieveByKey(int id_utente) throws SQLException {
+    public synchronized UtenteBean CercaID(int id_utente) throws SQLException {
     	UtenteBean utente = new UtenteBean();
         String selectSQL = "SELECT * FROM " +TABELLA+ " WHERE id_utente = ?";
         try (Connection connection = ds.getConnection();
@@ -69,7 +69,7 @@ public class UtenteDAOImpl implements UtenteDAO{
     }
     
     @Override
-    public synchronized Collection<UtenteBean> doRetrieveAll(String order) throws SQLException{
+    public synchronized Collection<UtenteBean> Utente(String order) throws SQLException{
     	List<UtenteBean> utenti = new LinkedList<>();
     	String selectSQL = "SELECT * FROM "+TABELLA;
     	if(order.equals("nome") || order.equals("cognome") || order.equals("email")) {
