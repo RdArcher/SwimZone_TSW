@@ -47,7 +47,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 	}
 
     @Override
-    public synchronized UtenteBean CercaID(int id_utente) throws SQLException {
+    public synchronized UtenteBean CercaUtente(int id_utente) throws SQLException {
     	UtenteBean utente = new UtenteBean();
         String selectSQL = "SELECT * FROM " +TABELLA+ " WHERE id_utente = ?";
         try (Connection connection = ds.getConnection();

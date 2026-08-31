@@ -11,7 +11,7 @@ public interface UtenteDAO {
 	
 	public boolean EliminaUtente(int id_utente) throws SQLException;
 	
-	public UtenteBean CercaID(int id_utente) throws SQLException;
+	public UtenteBean CercaUtente(int id_utente) throws SQLException;
 	
 	public Collection<UtenteBean> Utente(String order) throws SQLException;
 }
