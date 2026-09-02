@@ -1,17 +1,32 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrdineBean implements Serializable {
-    private static final long serialVersionUID = 1L;
     
     private int idOrdine;
     private int idProdotto; 
-    private float prezzoAcquisto;
+    private float totale;
     private int quantita;
     private boolean stato;
+    private Date data;
+    private UtenteBean utente;
+    private List<DettaglioOrdineBean> prodotti;
 
-    public OrdineBean() {}
+    public OrdineBean() {
+    	this.prodotti = new ArrayList<>();
+    }
+    
+    public void setUtente(UtenteBean utente) {
+    	this.utente=utente;
+    }
+    
+    public UtenteBean getUtente() {
+    	return utente;
+    }
 
     public int getIdOrdine() {
     	return idOrdine; 
@@ -29,12 +44,12 @@ public class OrdineBean implements Serializable {
     	this.idProdotto = idProdotto; 
     	}
 
-    public float getPrezzoAcquisto() { 
-    	return prezzoAcquisto; 
+    public float getTotale() { 
+    	return totale; 
     	}
     
-    public void setPrezzoAcquisto(float prezzoAcquisto) { 
-    	this.prezzoAcquisto = prezzoAcquisto; }
+    public void setTotale(float prezzoAcquisto) { 
+    	this.totale = prezzoAcquisto; }
 
     public int getQuantita() { 
     	return quantita; 
@@ -44,11 +59,31 @@ public class OrdineBean implements Serializable {
     	this.quantita = quantita; 
     	}
     
-    public boolean isStato() { 
+    public boolean getStato() { 
         return stato; 
     }
     
     public void setStato(boolean stato) { 
         this.stato = stato; 
+    }
+    
+    public Date getData() {
+    	return data;
+    }
+    
+    public void setData(Date data) {
+    	this.data=data;
+    }
+    
+    public List<DettaglioOrdineBean> getProdotti() {
+        return prodotti;
+    }
+
+    public void setProdotti(List<DettaglioOrdineBean> prodotti) {
+        this.prodotti = prodotti;
+    }
+
+    public void addProdotto(DettaglioOrdineBean prodotto) {
+        this.prodotti.add(prodotto);
     }
 }
