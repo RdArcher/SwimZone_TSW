@@ -11,6 +11,8 @@ public interface OrdineDAO {
 	
 	public OrdineBean cercaOrdine(int id_ordine) throws SQLException;
 	
+	public OrdineBean cercaOrdineID(int id_ordine) throws SQLException;
+	
 	public Collection<OrdineBean> ritornaOrdini(String order) throws SQLException;
 	
 	public boolean aggiornaStato(int id_ordine, boolean stato) throws SQLException;
