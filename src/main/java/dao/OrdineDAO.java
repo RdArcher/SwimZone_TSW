@@ -9,7 +9,7 @@ public interface OrdineDAO {
 		
 	public void salvaOrdine(OrdineBean ordine) throws SQLException;
 	
-	public OrdineBean cercaOrdine(int id_ordine) throws SQLException;
+	public OrdineBean cercaOrdineUtente(int id_utente) throws SQLException;
 	
 	public OrdineBean cercaOrdineID(int id_ordine) throws SQLException;
 	
