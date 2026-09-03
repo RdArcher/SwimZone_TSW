@@ -14,4 +14,6 @@ public interface UtenteDAO {
 	public UtenteBean CercaUtente(int id_utente) throws SQLException;
 	
 	public Collection<UtenteBean> Utente(String order) throws SQLException;
+	
+	public UtenteBean doRetrieveByEmailAndPassword(String email, String password) throws SQLException;
 }
