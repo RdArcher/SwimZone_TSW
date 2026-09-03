@@ -7,10 +7,8 @@ import java.util.List;
 
 public class OrdineBean implements Serializable {
     
-    private int idOrdine;
-    private int idProdotto; 
-    private float totale;
-    private int quantita;
+    private int idOrdine; 
+    private float totale;;
     private boolean stato;
     private Date data;
     private UtenteBean utente;
@@ -36,28 +34,12 @@ public class OrdineBean implements Serializable {
     	this.idOrdine = idOrdine; 
     	}
 
-    public int getIdProdotto() { 
-    	return idProdotto; 
-    	}
-    
-    public void setIdProdotto(int idProdotto) {
-    	this.idProdotto = idProdotto; 
-    	}
-
     public float getTotale() { 
     	return totale; 
     	}
     
     public void setTotale(float prezzoAcquisto) { 
     	this.totale = prezzoAcquisto; }
-
-    public int getQuantita() { 
-    	return quantita; 
-    	}
-    
-    public void setQuantita(int quantita) { 
-    	this.quantita = quantita; 
-    	}
     
     public boolean getStato() { 
         return stato; 
