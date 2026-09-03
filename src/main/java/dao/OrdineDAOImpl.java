@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -74,4 +77,72 @@ public class OrdineDAOImpl implements OrdineDAO{
             }
 		}
 	}
+	
+	public OrdineBean cercaOrdineID(int id_ordine) throws SQLException{
+		OrdineBean ordine = null;
+		String selectOrdine = "SELECT * FROM Ordine WHERE id_ordine = ?";
+		String selectDettagli = "SELECT * FROM Comprende WHERE id_ordine = ?";
+		
+		try (Connection connection = ds.getConnection();
+				PreparedStatement psOrdine = connection.prepareStatement(selectOrdine);
+				PreparedStatement psDettagli = connection.prepareStatement(selectDettagli)){
+			
+			psOrdine.setInt(1,  id_ordine);
+			try(ResultSet rs = psOrdine.executeQuery()){
+				if(rs.next()) {
+					ordine = new OrdineBean();
+					UtenteBean utente = new UtenteBean();
+                    ordine.setIdOrdine(rs.getInt("id_ordine"));
+                    utente.setIdUtente(rs.getInt("id_utente"));
+                    ordine.setData(rs.getDate("data"));
+                    ordine.setTotale(rs.getFloat("totale"));
+                    ordine.setStato(rs.getBoolean("stato"));
+                    utente.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
+                    
+                    ordine.setUtente(utente);
+				}
+			}
+		}
+		return ordine;
+	}
+	
+	public Collection<OrdineBean> cercaOrdineUtente(int id_utente) throws SQLException{
+		List<OrdineBean> ordini = new LinkedList<>();
+		String selectSQL = "SELECT * FROM Ordine WHERE id_utente = ? ORDER BY data DESC";
+		
+		try (Connection connection = ds.getConnection();
+	             PreparedStatement ps = connection.prepareStatement(selectSQL)) {
+
+	            ps.setInt(1, id_utente);
+	            try (ResultSet rs = ps.executeQuery()) {
+	                while (rs.next()) {
+	                    OrdineBean ordine = new OrdineBean();
+	                    UtenteBean utente = new UtenteBean();
+	                    ordine.setIdOrdine(rs.getInt("id_ordine"));
+	                    utente.setIdUtente(rs.getInt("id_utente"));
+	                    ordine.setData(rs.getDate("data"));
+	                    ordine.setTotale(rs.getFloat("totale"));
+	                    ordine.setStato(rs.getBoolean("stato"));
+	                    utente.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
+	                    ordine.setUtente(utente);
+	                    ordini.add(ordine);
+	                }
+	            }
+	        }
+		return ordini;
+	}
+	
+	public boolean aggiornaStato(int id_ordine, boolean stato) throws SQLException{
+		String updateSQL = "UPDATE Ordine SET stato = ? WHERE id_ordine = ?";
+		        
+		        try (Connection connection = ds.getConnection();
+		             PreparedStatement ps = connection.prepareStatement(updateSQL)) {
+		            
+		            ps.setBoolean(1, stato);
+		            ps.setInt(2, id_ordine);
+		            int result = ps.executeUpdate();
+		            return result > 0;
+		        }
+    }
+
 }
