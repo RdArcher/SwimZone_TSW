@@ -102,6 +102,19 @@ public class OrdineDAOImpl implements OrdineDAO{
                     ordine.setUtente(utente);
 				}
 			}
+			if (ordine != null) {
+				psDettagli.setInt(1, id_ordine);
+				try (ResultSet rsDettagli = psDettagli.executeQuery()) {
+					while (rsDettagli.next()) {
+						DettaglioOrdineBean dettaglio = new DettaglioOrdineBean();
+						dettaglio.setIdOrdine(rsDettagli.getInt("id_ordine"));
+						dettaglio.setIdProdotto(rsDettagli.getInt("id_prodotto"));
+						dettaglio.setPrezzoAcquisto(rsDettagli.getFloat("prezzo_acquisto"));
+						dettaglio.setQuantita(rsDettagli.getInt("quantita"));
+						ordine.addProdotto(dettaglio);
+					}
+				}
+			}
 		}
 		return ordine;
 	}
