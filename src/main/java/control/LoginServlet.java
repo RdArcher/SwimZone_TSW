@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet{
 				session.setAttribute("utente", utente);
 			} else {
 				request.setAttribute("errore", "email o password non corretti");
-				RequestDispatcher dis = request.getRequestDispatcher("login.php");
+				RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
 				dis.forward(request, response);
 			}
 		} catch(SQLException e) {
