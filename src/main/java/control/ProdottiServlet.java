@@ -32,7 +32,7 @@ public class ProdottiServlet extends HttpServlet{
 				
 				if(prodotto != null) {
 					request.setAttribute("prodotto", prodotto);
-					RequestDispatcher req = request.getRequestDispatcher("ettaglio_prodotto.jsp");
+					RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/view/dettaglio_prodotto.jsp");
 					req.forward(request, response);
 				} else {
 					response.sendError(HttpServletResponse.SC_NOT_FOUND, "Prodotto non trovato");
