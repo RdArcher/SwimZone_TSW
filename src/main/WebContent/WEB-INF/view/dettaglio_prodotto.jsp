@@ -42,7 +42,7 @@
 					<p class="prezzo"><%=prodotto.getPrezzo()%></p>
 					<p class="disponibilita"><%=prodotto.getQuantita()%> pezzi</p>
 					
-					<form action="<%=request.getContextPath()%>/carrello" method="POST" class="form-carrello">
+					<form action="<%=request.getContextPath()%>/Carrello" method="POST" class="form-carrello">
 						<input type="hidden" name="azione" value="aggiungi">
                   	  	<input type="hidden" name="id" value="<%=prodotto.getID_Prodotto()%>">
                     	<input type="number" name="quantita" value="1" min="1" max="<%=prodotto.getQuantita()%>">
