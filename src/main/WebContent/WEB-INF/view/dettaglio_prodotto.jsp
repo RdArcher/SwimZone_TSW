@@ -18,7 +18,6 @@
 				<li><a href="<%=request.getContextPath()%>/home">Home</a></li>
 				<li><a href="<%=request.getContextPath()%>/Prodotti">Prodotti</a></li>
 				
-				<%-- Controllo login in Java puro --%>
 				<% if (session.getAttribute("utente") != null) { %>
 					<li><a href="<%=request.getContextPath()%>/ordini">I miei ordini</a></li>
 					<li><a href="<%=request.getContextPath()%>/logout">Disconnetti</a></li>
@@ -44,7 +43,7 @@
 					
 					<form action="<%=request.getContextPath()%>/Carrello" method="POST" class="form-carrello">
 						<input type="hidden" name="azione" value="aggiungi">
-                  	  	<input type="hidden" name="id" value="<%=prodotto.getID_Prodotto()%>">
+                  	  	<input type="hidden" name="id" value="<%=prodotto.getID_prodotto()%>">
                     	<input type="number" name="quantita" value="1" min="1" max="<%=prodotto.getQuantita()%>">
                     	<button type="submit" class="btn-add">Aggiungi al Carrello</button>
 					</form>

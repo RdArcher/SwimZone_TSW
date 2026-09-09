@@ -17,26 +17,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ProdottoBean;
 
 @WebServlet("/Prodotti")
-public class ProdottiServlet extends HttpServlet {
+public class ProdottiServlet extends HttpServlet{
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		ProdottoDAO prodottoDAO = new ProdottoDAOImpl(ds);
 		
 		String id = request.getParameter("id");
 		String order = request.getParameter("order");
 		
 		try {
-			// --- INIZIO CONNESSIONE JNDI ---
-			javax.naming.Context initCtx = new javax.naming.InitialContext();
-			javax.naming.Context envCtx = (javax.naming.Context) initCtx.lookup("java:comp/env");
-			DataSource ds = (DataSource) envCtx.lookup("jdbc/SwimZoneDB");
-			
-			ProdottoDAO prodottoDAO = new ProdottoDAOImpl(ds);
-			// --- FINE CONNESSIONE JNDI ---
-
-			if(id != null) {
+			if(id!=null) {
 				int idProdotto = Integer.parseInt(id);
 				ProdottoBean prodotto = prodottoDAO.cercaProdotto(idProdotto);
-
+				
 				if(prodotto != null) {
 					request.setAttribute("prodotto", prodotto);
 					RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/view/dettaglio_prodotto.jsp");
@@ -47,20 +42,19 @@ public class ProdottiServlet extends HttpServlet {
 			} else {
 				Collection<ProdottoBean> prodotti = prodottoDAO.doRetrieveAll(order);
 				request.setAttribute("prodotti", prodotti);
-				
-                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/catalogo.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("catalogo.jsp");
                 dis.forward(request, response);
 			}
-			
 		} catch(NumberFormatException e) {
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID prodotto non valido");
-        } catch (SQLException | javax.naming.NamingException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Errore di accesso al database");
         }
+		
 	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		doGet(request, response);		
 	}
 }

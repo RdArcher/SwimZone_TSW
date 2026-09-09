@@ -73,7 +73,7 @@
 								<td>
 									<form action="<%=request.getContextPath()%>/Carrello" method="POST">
 										<input type="hidden" name="azione" value="rimuovi">
-										<input type="hidden" name="id" value="<%= item.getProdotto().getID_Prodotto() %>">
+										<input type="hidden" name="id" value="<%= item.getProdotto().getID_prodotto() %>">
 										<button type="submit" class="btn-remove">Rimuovi</button>
 									</form>
 								</td>

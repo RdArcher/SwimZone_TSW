@@ -21,11 +21,10 @@ import model.ProdottoBean;
 
 @WebServlet("/Carrello")
 public class CarrelloServlet extends HttpServlet{
-	 
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		HttpSession session = request.getSession(true);
 		
-		@SuppressWarnings("unchecked")
 		List<CarrelloBean> carrello = (List<CarrelloBean>) session.getAttribute("carrello");
 		
 		if(carrello==null) {
@@ -44,7 +43,7 @@ public class CarrelloServlet extends HttpServlet{
 					boolean flag = false;
 					
 					for(CarrelloBean item : carrello) {
-						if(item.getProdotto().getID_Prodotto() == idProdotto) {
+						if(item.getProdotto().getID_prodotto() == idProdotto) {
 							item.setQuantita(item.getQuantita()+quantita);
 							flag=true;
 							break;
@@ -52,12 +51,7 @@ public class CarrelloServlet extends HttpServlet{
 					}
 					
 					if(flag==false) {
-						// --- MODIFICA APPLICATA QUI ---
-						javax.naming.Context initCtx = new javax.naming.InitialContext();
-						javax.naming.Context envCtx = (javax.naming.Context) initCtx.lookup("java:comp/env");
-						DataSource ds = (DataSource) envCtx.lookup("jdbc/SwimZoneDB");
-						// ------------------------------
-						
+						DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");	
 						ProdottoDAO prodottoDAO = new ProdottoDAOImpl(ds);
 						ProdottoBean prodotto = prodottoDAO.cercaProdotto(idProdotto);
 						
@@ -66,15 +60,14 @@ public class CarrelloServlet extends HttpServlet{
 					}
 				} else if (azione.equals("rimuovi")) {
 					int idProdotto = Integer.parseInt(request.getParameter("id"));
-					carrello.removeIf(item -> item.getProdotto().getID_Prodotto() == idProdotto);
+					carrello.removeIf(item -> item.getProdotto().getID_prodotto() == idProdotto);
 					
 				} else if (azione.equals("svuota")) {
 					carrello.clear();
 				}
 			} catch(NumberFormatException e) {
 				System.out.println("Errore nei parametri");
-			} catch(SQLException | javax.naming.NamingException e) {
-				// --- GESTIONE ERRORE AGGIORNATA QUI ---
+			} catch(SQLException e) {
 				e.printStackTrace();
 				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				return;

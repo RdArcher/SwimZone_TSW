@@ -22,7 +22,7 @@ public class ProdottoDAOImpl implements ProdottoDAO{
 	
 	public void salvaProdotto(ProdottoBean prodotto) throws SQLException{
 		
-		String insertSQL = "INSERT INTO Prodotto (nome, descrizione, prezzo, quantita, path, mime_path) VALUES (?,?,?,?,?,?)";
+		String insertSQL = "INSERT INTO Prodotto (nome, descrizione, prezzo, quantita, image_path, mime_type) VALUES (?,?,?,?,?,?)";
 		
 		try(Connection connection = ds.getConnection();
 				PreparedStatement statement = connection.prepareStatement(insertSQL)){
@@ -51,7 +51,7 @@ public class ProdottoDAOImpl implements ProdottoDAO{
 	}
 	
 	public ProdottoBean cercaProdotto(int id_prodotto) throws SQLException{
-		String selectSQL = "SELECT FROM Prodotto WHERE id_prodotto = ?";
+		String selectSQL = "SELECT * FROM Prodotto WHERE id_prodotto = ?";
 		ProdottoBean bean = null;
 		
 		try(Connection connection = ds.getConnection();
@@ -67,7 +67,7 @@ public class ProdottoDAOImpl implements ProdottoDAO{
 					bean.setDescrizione(rs.getString("descrizione"));
 					bean.setPrezzo(rs.getFloat("prezzo"));
 					bean.setQuantita(rs.getInt("quantita"));
-					bean.setPath(rs.getString("path"));
+					bean.setPath(rs.getString("image_path"));
 					bean.setMimeType(rs.getString("mime_type"));
 				}
 			}
@@ -76,21 +76,21 @@ public class ProdottoDAOImpl implements ProdottoDAO{
 	}
 	
 	public Collection<ProdottoBean> doRetrieveAll(String order) throws SQLException{
-		String selectSQL = "SELECT * FROM Prodotti";
+		String selectSQL = "SELECT * FROM Prodotto";
 		List<ProdottoBean> prodotti = new LinkedList<>();
 		
 		try(Connection connection = ds.getConnection();
 				PreparedStatement statement = connection.prepareStatement(selectSQL)){
 			
 			try(ResultSet rs= statement.executeQuery()){
-				if(rs.next()) {
+				while(rs.next()) {
 					ProdottoBean bean = new ProdottoBean();
 					bean.setID_prdotto(rs.getInt("id_prodotto"));
 					bean.setNome(rs.getString("nome"));
 					bean.setDescrizione(rs.getString("descrizione"));
 					bean.setPrezzo(rs.getFloat("prezzo"));
 					bean.setQuantita(rs.getInt("quantita"));
-					bean.setPath(rs.getString("path"));
+					bean.setPath(rs.getString("image_path"));
 					bean.setMimeType(rs.getString("mime_type"));
 					
 					prodotti.add(bean);
@@ -102,7 +102,7 @@ public class ProdottoDAOImpl implements ProdottoDAO{
 	}
 	
 	public boolean AggiornaProdotto(ProdottoBean prodotto) throws SQLException{
-		String updateSQL = "UPDATE Prodotto SET name = ?, descrizione = ?, prezzo =?, quantita = ? WHERE code =?";
+		String updateSQL = "UPDATE Prodotto SET nome = ?, descrizione = ?, prezzo = ?, quantita = ? WHERE id_prodotto = ?";
 		
 		try(Connection connection = ds.getConnection();
 				PreparedStatement statement = connection.prepareStatement(updateSQL)){
@@ -111,8 +111,7 @@ public class ProdottoDAOImpl implements ProdottoDAO{
 			statement.setString(2, prodotto.getDescrizione());
 			statement.setFloat(3, prodotto.getPrezzo());
 			statement.setInt(4, prodotto.getQuantita());
-			statement.setString(5, prodotto.getPath());
-			statement.setString(6, prodotto.getMimeType());
+			statement.setInt(5, prodotto.getID_prodotto());
 			
 			int r = statement.executeUpdate();
 			return r>0;
@@ -131,13 +130,13 @@ public class ProdottoDAOImpl implements ProdottoDAO{
 		}
 	}
 	
-	public void doUpdateImage(int id_prodotto, String path, String mimeType) throws SQLException{
-			String updateSQL = "UPDATE Prodotto SET path = ?, mime_type = ? WHERE id_prodotto = ?";
+	public void doUpdateImage(int id_prodotto, String image_path, String mimeType) throws SQLException{
+			String updateSQL = "UPDATE Prodotto SET image_path = ?, mime_type = ? WHERE id_prodotto = ?";
 	        
 	        try (Connection connection = ds.getConnection();
 	             PreparedStatement preparedStatement = connection.prepareStatement(updateSQL)) {
 	            
-	            preparedStatement.setString(1, path);
+	            preparedStatement.setString(1, image_path);
 	            preparedStatement.setString(2, mimeType);
 	            preparedStatement.setInt(3, id_prodotto);
 	            

@@ -18,7 +18,7 @@ public class ProdottoBean implements Serializable{
 	
 	public ProdottoBean() {}
 	
-	public int getID_Prodotto() {
+	public int getID_prodotto() {
         return id_prodotto;
     }
 
