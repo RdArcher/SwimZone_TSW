@@ -7,8 +7,9 @@ import javax.sql.DataSource;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.annotation.WebListener;
 
-
+@WebListener
 public class MainContext implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		ServletContext context = sce.getServletContext();
@@ -17,7 +18,7 @@ public class MainContext implements ServletContextListener {
 		try {
 			Context init = new InitialContext();
 			Context env = (Context) init.lookup("java:comp/env");
-			ds = (DataSource) env.lookup("jdbc/swimzone_db");
+			ds = (DataSource) env.lookup("jdbc/SwimZoneDB");
 		} catch(NamingException e) {
 			System.out.println("Errore:" + e.getMessage());
 		}
