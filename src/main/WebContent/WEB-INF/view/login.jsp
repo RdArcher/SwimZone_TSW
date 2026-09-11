@@ -25,6 +25,10 @@
 		<% } %>
 		
 		<form action="<%= request.getContextPath()%>/LoginServlet" method="POST" class="form_aut">
+		<% String from = request.getParameter("from"); 
+       if (from != null) { %>
+        <input type="hidden" name="from" value="<%= from %>">
+    <% } %>
 			<div class="gruppo-form">
 				<label for="email">Email</label>
 				<input type="email" id="email" name="email" required>
@@ -37,7 +41,7 @@
 			
 			<button type="submit" class="invia">Accedi</button>
 		</form>
-		
+
 		<p class="link">Non hai un account= <a href="<%=request.getContextPath()%>/RegistrazioneServlet">Registrati qui</a></p>
 	</main>
 </body>
