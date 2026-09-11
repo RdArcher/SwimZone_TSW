@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet{
 		
 		if(email==null || password==null) {
 			request.setAttribute("errore", "Compila i campi per accedere");
-			RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
 			dis.forward(request, response);
 			return;
 		}
@@ -42,15 +42,16 @@ public class LoginServlet extends HttpServlet{
 			if(utente!=null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("utente", utente);
+				response.sendRedirect(request.getContextPath() + "/home");
 			} else {
 				request.setAttribute("errore", "email o password non corretti");
-				RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
+				RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
 				dis.forward(request, response);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
             request.setAttribute("errore", "Errore interno del server. Riprova più tardi.");
-            RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
             dis.forward(request, response);
 		}
 	}

@@ -9,11 +9,13 @@ import dao.UtenteDAO;
 import dao.UtenteDAOImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.UtenteBean;
 
+@WebServlet("/RegistrazioneServlet")
 public class RegistrazioneServlet extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,7 +31,7 @@ public class RegistrazioneServlet extends HttpServlet{
 		
 		if(nome==null || cognome==null || email==null || password==null || indirizzo==null) {
 			request.setAttribute("errore", "Compila tutti i campi obbligatori");
-			RequestDispatcher dis = request.getRequestDispatcher("registrazione.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/registrazione.jsp");
 			dis.forward(request, response);
 			return;
 		}
@@ -50,12 +52,12 @@ public class RegistrazioneServlet extends HttpServlet{
 			utenteDAO.SalvaUtente(nuovoUtente);
 			
 			request.setAttribute("successo", "Registrazione completata!");
-			RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
 			dis.forward(request, response);
 		} catch(SQLException e) {
 			e.printStackTrace();
             request.setAttribute("errore", "Errore durante la registrazione. L'email potrebbe essere già in uso.");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("registrazione.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/registrazione.jsp");
             dispatcher.forward(request, response);
 		}
 	}
