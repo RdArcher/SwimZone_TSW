@@ -42,7 +42,7 @@ public class ProdottiServlet extends HttpServlet{
 			} else {
 				Collection<ProdottoBean> prodotti = prodottoDAO.doRetrieveAll(order);
 				request.setAttribute("prodotti", prodotti);
-                RequestDispatcher dis = request.getRequestDispatcher("catalogo.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/catalogo.jsp");
                 dis.forward(request, response);
 			}
 		} catch(NumberFormatException e) {

@@ -42,17 +42,26 @@ public class LoginServlet extends HttpServlet{
 			if(utente!=null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("utente", utente);
-				response.sendRedirect(request.getContextPath() + "/home");
+				
+				String from = request.getParameter("from");
+				if ("carrello".equals(from)) {
+				    response.sendRedirect(request.getContextPath() + "/Carrello");
+				} else {
+				    response.sendRedirect(request.getContextPath() + "/home");
+				}
+				
 			} else {
 				request.setAttribute("errore", "email o password non corretti");
 				RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
 				dis.forward(request, response);
+				return;
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
             request.setAttribute("errore", "Errore interno del server. Riprova più tardi.");
             RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
             dis.forward(request, response);
+            return;
 		}
 	}
 }

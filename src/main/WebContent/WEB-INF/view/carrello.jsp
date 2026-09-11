@@ -24,7 +24,7 @@
 					<li><a href="<%=request.getContextPath()%>/ordini">I miei ordini</a></li>
 					<li><a href="<%=request.getContextPath()%>/logout">Disconnetti</a></li>
 				<% } else { %>
-					<li><a href="<%=request.getContextPath()%>/login">Accedi</a></li>
+					<li><a href="<%=request.getContextPath()%>/LoginServlet">Accedi</a></li>
 				<% } %>
 			</ul>
 		</nav>
@@ -93,7 +93,7 @@
 						<% if (session.getAttribute("utente") != null) { %>
 							<a href="<%=request.getContextPath()%>/Ordine?azione=checkout" class="btn-checkout">Procedi al Checkout</a>
 						<% } else { %>
-							<a href="<%=request.getContextPath()%>/login" class="btn-checkout">Accedi per continuare</a>
+							<a href="<%=request.getContextPath()%>/LoginServlet?from=carrello" class="btn-checkout">Accedi per continuare</a>
 						<% } %>
 					</div>
 				</div>

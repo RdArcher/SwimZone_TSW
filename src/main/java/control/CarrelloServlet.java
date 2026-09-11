@@ -34,6 +34,9 @@ public class CarrelloServlet extends HttpServlet{
 		
 		String azione = request.getParameter("azione");
 		
+		if(azione==null)
+			azione= "mostraCarrello";
+		
 		if(azione!=null) {
 			try {
 				if(azione.equals("aggiungi")) {
