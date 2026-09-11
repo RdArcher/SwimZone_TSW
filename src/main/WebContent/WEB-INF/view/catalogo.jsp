@@ -12,7 +12,6 @@
         <nav>
             <ul>
                 <li><a href="<%=request.getContextPath()%>/home">Home</a></li>
-                <li><a href="<%=request.getContextPath()%>/Prodotti">Prodotti</a></li>
                 <% if (session.getAttribute("utente") != null) { %>
                     <li><a href="<%=request.getContextPath()%>/Ordini">I miei ordini</a></li>
                     <li><a href="<%=request.getContextPath()%>/Carrello">Carrello</a></li>
