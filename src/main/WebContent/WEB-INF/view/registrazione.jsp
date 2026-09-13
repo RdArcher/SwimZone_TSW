@@ -3,7 +3,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrati - SwimZone</title>
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/autenticazione.css">
 </head>
 <body>
     <header>
@@ -17,16 +20,16 @@
 
     <main class="container">
         <div class="form-container">
-            <h1>Crea un nuovo account</h1>
+            <h1>Crea account</h1>
             
             <% String errore = (String) request.getAttribute("errore");
                if (errore != null) { %>
-                <div class="m_errore" style="color: red; font-weight: bold; margin-bottom: 15px;">
+                <div class="m_errore" style="margin-bottom: 15px;">
                     <%= errore %>
                 </div>
             <% } %>
 
-            <form action="<%=request.getContextPath()%>/RegistrazioneServlet" method="POST" class="form-aut">
+            <form action="<%=request.getContextPath()%>/RegistrazioneServlet" method="POST">
                 <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="text" id="nome" name="nome" required>
@@ -55,7 +58,7 @@
                 <button type="submit" class="btn-submit">Registrati</button>
             </form>
             
-            <p class="link-auth">Hai già un account? <a href="<%=request.getContextPath()%>/LoginServlet">Accedi qui</a></p>
+            <p class="link-auth">Hai già un account? <a href="<%=request.getContextPath()%>/login">Accedi qui</a></p>
         </div>
     </main>
 </body>
