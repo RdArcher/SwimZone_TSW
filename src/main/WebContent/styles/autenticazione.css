@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px); 
+    padding: 20px;
+}
+
+.form-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+    box-sizing: border-box;
+}
+
+.form-container h1 {
+    text-align: center;
+    color: #007BFF;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #00509E;
+    font-size: 0.95rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1e3f8;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: #007BFF;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #00509E;
+}
+
+.link-auth {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.link-auth a {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.link-auth a:hover {
+    text-decoration: underline;
+}
+
+/* Messaggio di errore */
+.m_errore {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #f5c6cb;
+    text-align: center;
+    font-size: 0.9rem;
+}
