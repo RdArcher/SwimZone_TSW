@@ -5,7 +5,10 @@
          version="6.0">
          
     <display-name>SwimZone_TSW</display-name>
-
+<welcome-file-list>
+	<welcome-file>home</welcome-file>
+</welcome-file-list>
+    
     
     <resource-ref>
         <res-ref-name>jdbc/SwimZoneDB</res-ref-name>
