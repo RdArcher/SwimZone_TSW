@@ -123,4 +123,21 @@ public class UtenteDAOImpl implements UtenteDAO{
         }
         return utente;
     }
+    
+    public boolean aggiornaUtente(UtenteBean utente) throws SQLException{
+    	String updateSQL="UPDATE Utente SET nome = ?, cognome = ?, email = ?, password = ?, indirizzo_spedizione = ? WHERE id_utente = ?";
+    	
+    	try(Connection connection = ds.getConnection();
+    			PreparedStatement statement = connection.prepareStatement(updateSQL)){
+    		statement.setString(1, utente.getNome());
+    		statement.setString(2, utente.getCognome());
+    		statement.setString(3, utente.getEmail());
+    		statement.setString(4, utente.getPassword());
+    		statement.setString(5, utente.getIndirizzoSpedizione());
+    		statement.setInt(6, utente.getIdUtente());
+    		
+    		int result = statement.executeUpdate();
+    		return result>0;
+    	}
+    }
 }
