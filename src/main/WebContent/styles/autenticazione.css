@@ -87,7 +87,6 @@
     text-decoration: underline;
 }
 
-/* Messaggio di errore */
 .m_errore {
     background-color: #f8d7da;
     color: #721c24;
@@ -96,4 +95,9 @@
     border: 1px solid #f5c6cb;
     text-align: center;
     font-size: 0.9rem;
+}
+
+input.error {
+    border-color: red !important;
+    background-color: #fff0f0;
 }
