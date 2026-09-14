@@ -22,34 +22,31 @@ public class ProdottiServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-		ProdottoDAO prodottoDAO = new ProdottoDAOImpl(ds);
-		
-		String id = request.getParameter("id");
-		String order = request.getParameter("order");
-		
-		try {
-			if(id!=null) {
-				int idProdotto = Integer.parseInt(id);
-				ProdottoBean prodotto = prodottoDAO.cercaProdotto(idProdotto);
-				
-				if(prodotto != null) {
-					request.setAttribute("prodotto", prodotto);
-					RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/view/dettaglio_prodotto.jsp");
-					req.forward(request, response);
-				} else {
-					response.sendError(HttpServletResponse.SC_NOT_FOUND, "Prodotto non trovato");
-				}
-			} else {
-				Collection<ProdottoBean> prodotti = prodottoDAO.doRetrieveAll(order);
-				request.setAttribute("prodotti", prodotti);
-                RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/catalogo.jsp");
-                dis.forward(request, response);
-			}
-		} catch(NumberFormatException e) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID prodotto non valido");
+        ProdottoDAOImpl prodottoDAO = new ProdottoDAOImpl(ds);
+        Collection<ProdottoBean> listaProdotti;
+        
+        String idCategoriaStr = request.getParameter("categoria");
+        
+        try {
+            if (idCategoriaStr != null && !idCategoriaStr.trim().isEmpty()) {
+                // Converto l'ID ricevuto dalla URL in numero
+                int idCategoria = Integer.parseInt(idCategoriaStr);
+                listaProdotti = prodottoDAO.doRetrieveByCategoria(idCategoria);
+            } else {
+                // Se non c'è nessuna categoria nell'URL, mostro tutto
+                listaProdotti = prodottoDAO.doRetrieveAll("");
+            }
+            
+            request.setAttribute("prodotti", listaProdotti);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/catalogo.jsp");
+            dispatcher.forward(request, response);
+            
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Errore di accesso al database");
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Errore Database");
+        } catch (NumberFormatException e) {
+            // Se l'utente manomette l'URL scrivendo testo al posto del numero
+            response.sendRedirect(request.getContextPath() + "/Prodotti");
         }
 		
 	}
