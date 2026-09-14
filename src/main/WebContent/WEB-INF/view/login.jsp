@@ -43,7 +43,7 @@
 				
 				<div class="form-group">
 				    <label for="password">Password</label>
-				    <input type="password" id="password" name="password" requiredonchange="validateFormElem(this, document.getElementById('errorPass'), passwordErrorMessage)">
+				    <input type="password" id="password" name="password" required onchange="validateFormElem(this, document.getElementById('errorPass'), passwordErrorMessage)">
 				    <span id="errorPass"></span>
 				</div>
                 
