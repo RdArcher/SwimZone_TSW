@@ -20,6 +20,13 @@
                     <li><a href="<%=request.getContextPath()%>/LoginServlet">Accedi</a></li>
                 <% } %>
             </ul>
+            
+            <ul>
+			    <li><a href="<%=request.getContextPath()%>/Prodotti">Tutti i prodotti</a></li>
+			    <li><a href="<%=request.getContextPath()%>/Prodotti?categoria=1">Costumi Donna</a></li>
+			    <li><a href="<%=request.getContextPath()%>/Prodotti?categoria=2">Costumi Uomo</a></li>
+			    <li><a href="<%=request.getContextPath()%>/Prodotti?categoria=3">Occhialini</a></li>
+		   </ul>
         </nav>
     </header>
 
