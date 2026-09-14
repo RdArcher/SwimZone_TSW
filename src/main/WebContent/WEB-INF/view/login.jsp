@@ -29,21 +29,23 @@
                 </div>
             <% } %>
 		
-            <form action="<%= request.getContextPath()%>/LoginServlet" method="POST">
+            <form id="formLogin" action="<%= request.getContextPath()%>/LoginServlet" method="POST" onsubmit="return validate()" novalidate>
                 <% String from = request.getParameter("from"); 
                    if (from != null) { %>
                     <input type="hidden" name="from" value="<%= from %>">
                 <% } %>
                 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
+				    <label for="email">Email</label>
+				    <input type="email" id="email" name="email" required onchange="validateFormElem(this, document.getElementById('errorMail'), emailErrorMessage)">
+				    <span id="errorMail"></span>
+				</div>
+				
+				<div class="form-group">
+				    <label for="password">Password</label>
+				    <input type="password" id="password" name="password" requiredonchange="validateFormElem(this, document.getElementById('errorPass'), passwordErrorMessage)">
+				    <span id="errorPass"></span>
+				</div>
                 
                 <button type="submit" class="btn-submit">Accedi</button>
             </form>
@@ -51,5 +53,7 @@
             <p class="link-auth">Non hai un account? <a href="<%=request.getContextPath()%>/RegistrazioneServlet">Registrati qui</a></p>
         </div>
     </main>
+    
+    <script src="script/validazioneLogin.js"></script>
 </body>
 </html>
