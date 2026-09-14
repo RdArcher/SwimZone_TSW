@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet{
 		String password = request.getParameter("password");
 		
 		if(email==null || password==null) {
-			request.setAttribute("errore", "Compila i campi per accedere");
+			//request.setAttribute("errore", "Compila i campi per accedere");
 			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
 			dis.forward(request, response);
 			return;
