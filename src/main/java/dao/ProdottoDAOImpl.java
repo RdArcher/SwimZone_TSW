@@ -143,4 +143,34 @@ public class ProdottoDAOImpl implements ProdottoDAO{
 	            preparedStatement.executeUpdate();
         }
 	}
+	
+	public Collection<ProdottoBean> doRetrieveByCategoria(int id_categoria) throws SQLException {
+	    String selectSQL = "SELECT * FROM Prodotto WHERE id_categoria = ? AND attivo = 1";
+	    List<ProdottoBean> prodotti = new LinkedList<>();
+	    
+	    try (Connection connection = ds.getConnection();
+	         PreparedStatement statement = connection.prepareStatement(selectSQL)) {
+	        
+	        statement.setInt(1, id_categoria);
+	        
+	        try (ResultSet rs = statement.executeQuery()) {
+	            while (rs.next()) {
+	                ProdottoBean bean = new ProdottoBean();
+	                bean.setID_prdotto(rs.getInt("id_prodotto"));
+	                bean.setID_categoria(rs.getInt("id_categoria")); 
+	                bean.setNome(rs.getString("nome"));
+	                bean.setDescrizione(rs.getString("descrizione"));
+	                bean.setColore(rs.getString("colore"));
+	                bean.setPrezzo(rs.getFloat("prezzo"));
+	                bean.setTaglia(rs.getString("taglia"));
+	                bean.setQuantita(rs.getInt("quantita"));
+	                bean.setPath(rs.getString("image_path"));
+	                bean.setMimeType(rs.getString("mime_type"));
+	                
+	                prodotti.add(bean);
+	            }
+	        }
+	        return prodotti;
+	    }
+	}
 }

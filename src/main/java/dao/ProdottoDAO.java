@@ -21,4 +21,6 @@ public interface ProdottoDAO {
 	
 	public void doUpdateImage(int id_prodotto, String path, String mimeType) throws SQLException;
 	
+	public Collection<ProdottoBean> doRetrieveByCategoria(int id_categoria) throws SQLException;
+	
 }
