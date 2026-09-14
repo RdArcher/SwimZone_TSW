@@ -56,7 +56,7 @@ public class RegistrazioneServlet extends HttpServlet{
 			dis.forward(request, response);
 		} catch(SQLException e) {
 			e.printStackTrace();
-            request.setAttribute("errore", "Errore durante la registrazione. L'email potrebbe essere già in uso.");
+            //request.setAttribute("errore", "Errore durante la registrazione. L'email potrebbe essere già in uso.");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/registrazione.jsp");
             dispatcher.forward(request, response);
 		}
