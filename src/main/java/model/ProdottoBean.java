@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class ProdottoBean implements Serializable{
 	
 	private int id_prodotto;
+	private int id_categoria;
 	private String nome;
 	private float prezzo;
 	private String descrizione;
@@ -25,6 +26,15 @@ public class ProdottoBean implements Serializable{
     public void setID_prdotto(int id_prodotto) {
         this.id_prodotto = id_prodotto;
     }
+    
+    public int getID_categoria() {
+        return id_categoria;
+    }
+
+    public void setID_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+
 
     public String getNome() {
         return nome;
@@ -56,6 +66,22 @@ public class ProdottoBean implements Serializable{
 
     public void setQuantita(int quantita) {
         this.quantita = quantita;
+    }
+    
+    public String getColore() {
+        return colore;
+    }
+
+    public void setColore(String colore) {
+        this.colore = colore;
+    }
+    
+    public String getTaglia() {
+        return taglia;
+    }
+
+    public void setTaglia(String taglia) {
+        this.taglia = taglia;
     }
     
     public boolean getStato() {
