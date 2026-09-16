@@ -64,7 +64,7 @@
 	    <button type="submit" class="btn-submit">Registrati</button>
 </form>
             
-            <p class="link-auth">Hai già un account? <a href="<%=request.getContextPath()%>/login">Accedi qui</a></p>
+            <p class="link-auth">Hai già un account? <a href="<%=request.getContextPath()%>/LoginServlet">Accedi qui</a></p>
         </div>
     </main>
     

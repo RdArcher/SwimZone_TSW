@@ -43,7 +43,7 @@ public class RegistrazioneServlet extends HttpServlet{
 		nuovoUtente.setPassword(password);
 		nuovoUtente.setIndirizzoSpedizione(indirizzo);
 		
-		nuovoUtente.setRuolo("utente");
+		nuovoUtente.setRuolo(1);
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		UtenteDAO utenteDAO = new UtenteDAOImpl(ds);

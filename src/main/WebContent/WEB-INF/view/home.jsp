@@ -23,9 +23,9 @@
                     
                     <li><a href="<%=request.getContextPath()%>/profilo">Il mio Profilo</a></li>
                     
-                    <% if ("admin".equals(utente.getRuolo())) { %>
-                        <li><a href="<%=request.getContextPath()%>/Admin">Pannello Admin</a></li>
-                    <% } %>
+					<% if (utente != null && utente.getRuolo() == 2) { %>
+   						 <li><a href="<%=request.getContextPath()%>/admin_ordini">Pannello Admin</a></li>
+					<% } %>
                     
                     <li><a href="<%=request.getContextPath()%>/logout">Disconnetti</a></li>
                     
