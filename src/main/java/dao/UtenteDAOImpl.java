@@ -18,7 +18,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 	}
 	
 	@Override
-	public synchronized void SalvaUtente(UtenteBean utente) throws SQLException{
+	public void SalvaUtente(UtenteBean utente) throws SQLException{
 		String insertSQL = "INSERT INTO Utente ( nome, cognome, email, password, ruolo, indirizzo_spedizione) VALUES(?, ?, ?, ?, ?, ?)";
 		
 		try (Connection connection = ds.getConnection();
@@ -27,7 +27,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 			statement.setString(2, utente.getCognome());
 			statement.setString(3, utente.getEmail());
 			statement.setString(4, utente.getPassword());
-			statement.setString(5, utente.getRuolo());
+			statement.setInt(5, utente.getRuolo());
 			statement.setString(6, utente.getIndirizzoSpedizione());
 			statement.executeUpdate();
 		}
@@ -35,7 +35,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 	}
 	
 	@Override
-	public synchronized boolean EliminaUtente(int id_utente) throws SQLException{
+	public boolean EliminaUtente(int id_utente) throws SQLException{
 		String deleteSQL = "DELETE FROM Utente WHERE id_utente= ?";
 		try(Connection connection = ds.getConnection();
 				PreparedStatement statement = connection.prepareStatement(deleteSQL)){
@@ -46,7 +46,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 	}
 
     @Override
-    public synchronized UtenteBean CercaUtente(int id_utente) throws SQLException {
+    public UtenteBean CercaUtente(int id_utente) throws SQLException {
     	UtenteBean utente = new UtenteBean();
         String selectSQL = "SELECT * FROM Utente WHERE id_utente = ?";
         try (Connection connection = ds.getConnection();
@@ -59,7 +59,7 @@ public class UtenteDAOImpl implements UtenteDAO{
                 	utente.setCognome(result.getString("cognome"));
                 	utente.setEmail(result.getString("email"));
                 	utente.setPassword(result.getString("password"));
-                	utente.setRuolo(result.getString("ruolo"));
+                	utente.setRuolo(result.getInt("ruolo"));
                 	utente.setIndirizzoSpedizione(result.getString("indirizzo_spedizione"));
                 }
             }
@@ -68,7 +68,7 @@ public class UtenteDAOImpl implements UtenteDAO{
     }
     
     @Override
-    public synchronized Collection<UtenteBean> Utente(String order) throws SQLException{
+    public Collection<UtenteBean> Utente(String order) throws SQLException{
     	List<UtenteBean> utenti = new LinkedList<>();
     	String selectSQL = "SELECT * FROM Utente";
     	if(order.equals("nome") || order.equals("cognome") || order.equals("email")) {
@@ -87,7 +87,7 @@ public class UtenteDAOImpl implements UtenteDAO{
             	utente.setCognome(result.getString("cognome"));
             	utente.setEmail(result.getString("email"));
             	utente.setPassword(result.getString("password"));
-            	utente.setRuolo(result.getString("ruolo"));
+            	utente.setRuolo(result.getInt("ruolo"));
             	utente.setIndirizzoSpedizione(result.getString("indirizzo_spedizione"));
             	
             	utenti.add(utente);
@@ -116,7 +116,7 @@ public class UtenteDAOImpl implements UtenteDAO{
                     utente.setCognome(rs.getString("cognome"));
                     utente.setEmail(rs.getString("email"));
                     utente.setPassword(rs.getString("password"));
-                    utente.setRuolo(rs.getString("ruolo"));
+                    utente.setRuolo(rs.getInt("ruolo"));
                     utente.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
                 }
             }

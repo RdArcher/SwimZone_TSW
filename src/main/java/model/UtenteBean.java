@@ -9,7 +9,7 @@ public class UtenteBean implements Serializable{
 	private String cognome;
 	private String mail;
 	private String pass;
-	private String ruolo;
+	private int ruolo;
 	private String indirizzoSpedizione;
 	
 	public UtenteBean() {};
@@ -54,11 +54,11 @@ public class UtenteBean implements Serializable{
         this.pass = pass;
     }
 
-    public String getRuolo() {
+    public int getRuolo() {
         return ruolo;
     }
 
-    public void setRuolo(String ruolo) {
+    public void setRuolo(int ruolo) {
         this.ruolo = ruolo;
     }
 
