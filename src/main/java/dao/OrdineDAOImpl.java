@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -156,5 +157,67 @@ public class OrdineDAOImpl implements OrdineDAO {
 			int result = ps.executeUpdate();
 			return result > 0;
 		}
+	}
+
+	public Collection<OrdineBean> doRetrieveAll() throws SQLException {
+		List<OrdineBean> ordini = new LinkedList<>();
+		String query = "SELECT o.id_ordine, o.totale, o.attivo, o.data, o.indirizzo_spedizione, u.id_utente, u.nome, u.cognome, u.email FROM Ordine o JOIN Utente u ON o.id_utente = u.id_utente ORDER BY o.data DESC";
+
+		try (Connection con = ds.getConnection();
+		     PreparedStatement ps = con.prepareStatement(query);
+		     ResultSet rs = ps.executeQuery()) {
+
+			while (rs.next()) {
+				OrdineBean ordine = new OrdineBean();
+				ordine.setIdOrdine(rs.getInt("id_ordine"));
+				ordine.setTotale(rs.getFloat("totale"));
+				ordine.setStato(rs.getBoolean("attivo"));
+				ordine.setData(rs.getDate("data"));
+
+				UtenteBean utente = new UtenteBean();
+				utente.setIdUtente(rs.getInt("id_utente"));
+				utente.setNome(rs.getString("nome"));
+				utente.setCognome(rs.getString("cognome"));
+				utente.setEmail(rs.getString("email"));
+				utente.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
+
+				ordine.setUtente(utente);
+				ordini.add(ordine);
+			}
+		}
+		return ordini;
+	}
+
+	public Collection<OrdineBean> doRetrieveByDateRange(Date inizio, Date fine) throws SQLException {
+		List<OrdineBean> ordini = new LinkedList<>();
+		String query = "SELECT o.id_ordine, o.totale, o.attivo, o.data, o.indirizzo_spedizione, u.id_utente, u.nome, u.cognome, u.email FROM Ordine o JOIN Utente u ON o.id_utente = u.id_utente WHERE o.data BETWEEN ? AND ? ORDER BY o.data DESC";
+
+		try (Connection con = ds.getConnection();
+		     PreparedStatement ps = con.prepareStatement(query)) {
+
+			ps.setDate(1, inizio);
+			ps.setDate(2, fine);
+
+			try (ResultSet rs = ps.executeQuery()) {
+				while (rs.next()) {
+					OrdineBean ordine = new OrdineBean();
+					ordine.setIdOrdine(rs.getInt("id_ordine"));
+					ordine.setTotale(rs.getFloat("totale"));
+					ordine.setStato(rs.getBoolean("attivo"));
+					ordine.setData(rs.getDate("data"));
+
+					UtenteBean utente = new UtenteBean();
+					utente.setIdUtente(rs.getInt("id_utente"));
+					utente.setNome(rs.getString("nome"));
+					utente.setCognome(rs.getString("cognome"));
+					utente.setEmail(rs.getString("email"));
+					utente.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
+
+					ordine.setUtente(utente);
+					ordini.add(ordine);
+				}
+			}
+		}
+		return ordini;
 	}
 }
