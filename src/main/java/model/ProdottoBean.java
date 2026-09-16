@@ -48,8 +48,8 @@ public class ProdottoBean implements Serializable{
         return descrizione;
     }
 
-    public void setDescrizione(String nome) {
-        this.nome = nome;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
     public float getPrezzo() {
