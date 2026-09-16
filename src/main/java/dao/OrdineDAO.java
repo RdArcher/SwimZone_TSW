@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Collection;
 
@@ -14,4 +15,8 @@ public interface OrdineDAO {
 	public OrdineBean cercaOrdineID(int id_ordine) throws SQLException;
 	
 	public boolean aggiornaStato(int id_ordine, boolean stato) throws SQLException;
+	
+	public Collection<OrdineBean> doRetrieveAll() throws SQLException;
+	
+	public Collection<OrdineBean> doRetrieveByDateRange(Date inizio, Date fine) throws SQLException;
 }
