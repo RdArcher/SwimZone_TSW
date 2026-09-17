@@ -29,11 +29,9 @@ public class ProdottiServlet extends HttpServlet{
         
         try {
             if (idCategoriaStr != null && !idCategoriaStr.trim().isEmpty()) {
-                // Converto l'ID ricevuto dalla URL in numero
                 int idCategoria = Integer.parseInt(idCategoriaStr);
                 listaProdotti = prodottoDAO.doRetrieveByCategoria(idCategoria);
             } else {
-                // Se non c'è nessuna categoria nell'URL, mostro tutto
                 listaProdotti = prodottoDAO.doRetrieveAll("");
             }
             
@@ -45,7 +43,6 @@ public class ProdottiServlet extends HttpServlet{
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Errore Database");
         } catch (NumberFormatException e) {
-            // Se l'utente manomette l'URL scrivendo testo al posto del numero
             response.sendRedirect(request.getContextPath() + "/Prodotti");
         }
 		
