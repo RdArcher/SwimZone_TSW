@@ -1,5 +1,6 @@
 package control;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -18,15 +19,15 @@ import model.ProdottoBean;
 import model.UtenteBean;
 
 @WebServlet("/admin_prodotti")
-@MultipartConfig // Fondamentale perché caricheremo immagini
+@MultipartConfig 
 public class AdminProdottiServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
-    	if (utente == null || utente.getRuolo() != 2) { 
-    	    response.sendRedirect(request.getContextPath() + "/LoginServlet");
-    	    return;
-    	}
+        UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
+        if (utente == null || utente.getRuolo() != 2) { 
+            response.sendRedirect(request.getContextPath() + "/LoginServlet");
+            return;
+        }
         
         DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
         ProdottoDAOImpl dao = new ProdottoDAOImpl(ds);
@@ -40,11 +41,11 @@ public class AdminProdottiServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
-    	if (utente == null || utente.getRuolo() != 2) { 
-    	    response.sendRedirect(request.getContextPath() + "/LoginServlet");
-    	    return;
-    	}
+        UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
+        if (utente == null || utente.getRuolo() != 2) { 
+            response.sendRedirect(request.getContextPath() + "/LoginServlet");
+            return;
+        }
         
         DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
         ProdottoDAOImpl dao = new ProdottoDAOImpl(ds);
@@ -63,15 +64,21 @@ public class AdminProdottiServlet extends HttpServlet {
                 
                 Part filePart = request.getPart("immagine");
                 String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+
+                String uploadPath = getServletContext().getRealPath("") + File.separator + "images";
+                File uploadDir = new File(uploadPath);
+                if (!uploadDir.exists()) {
+                    uploadDir.mkdir();
+                }
+                filePart.write(uploadPath + File.separator + fileName);
                 
                 p.setPath("images/" + fileName);
                 p.setMimeType(filePart.getContentType());
-                 p.setStato(true);
+                p.setStato(true);
                 dao.salvaProdotto(p);
                 
             } else if ("delete".equals(action)) {
                 int id = Integer.parseInt(request.getParameter("id_prodotto"));
-               
                 dao.eliminaProdotto(id);
             }
         } catch (Exception e) {
