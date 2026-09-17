@@ -23,4 +23,6 @@ public interface ProdottoDAO {
 	
 	public Collection<ProdottoBean> doRetrieveByCategoria(int id_categoria) throws SQLException;
 	
+	public void aggiornaQuantita(int id_prodotto, int quantitaAcquistata) throws SQLException;
+	
 }
