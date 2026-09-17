@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Catalogo - SwimZone</title>
+    <!-- Non dimenticare il CSS per la barra di navigazione! -->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/home.css">
 </head>
 <body>
     <header>
@@ -39,28 +41,39 @@
                 if (prodotti != null && !prodotti.isEmpty()) {
                     for (ProdottoBean p : prodotti) {
             %>
-                <div class="card-prodotto" style="border: 1px solid #ccc; padding: 15px; width: 250px; text-align: center;">
-                    <a href="<%=request.getContextPath()%>/Prodotti?id=<%= p.getID_prodotto() %>" style="text-decoration: none; color: inherit;">
-                        <h3><%= p.getNome() %></h3>
+                <div class="card-prodotto" style="background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; padding: 15px; width: 250px; text-align: center;">
+                    
+                    <a href="<%=request.getContextPath()%>/dettaglio?id=<%= p.getID_prodotto() %>" style="text-decoration: none; color: #333;">
+                        
+                        <img src="<%=request.getContextPath()%>/<%= p.getPath() %>" alt="<%= p.getNome() %>" style="width: 100%; height: 200px; object-fit: contain; margin-bottom: 10px; background: white;">
+                        
+                        <h3 style="margin: 10px 0 5px 0;"><%= p.getNome() %></h3>
                     </a>
                     
-                    <p class="prezzo">&euro; <%= String.format("%.2f", p.getPrezzo()) %></p>
+                    <p class="prezzo" style="color: #28a745; font-size: 1.2rem; font-weight: bold; margin: 10px 0;">
+                        &euro; <%= String.format("%.2f", p.getPrezzo()) %>
+                    </p>
                     
-                    <form action="<%=request.getContextPath()%>/Carrello" method="POST">
+                    <form action="<%=request.getContextPath()%>/Carrello" method="POST" style="margin-top: 15px;">
                         <input type="hidden" name="azione" value="aggiungi">
                         <input type="hidden" name="id" value="<%= p.getID_prodotto() %>">
                         
-                        <label for="quantita_<%= p.getID_prodotto() %>">Qtà:</label>
-                        <input type="number" id="quantita_<%= p.getID_prodotto() %>" name="quantita" value="1" min="1" max="10" style="width: 50px;">
+                        <label for="quantita_<%= p.getID_prodotto() %>" style="font-weight: bold;">Qtà:</label>
+                        <input type="number" id="quantita_<%= p.getID_prodotto() %>" name="quantita" value="1" min="1" max="<%= p.getQuantita() %>" style="width: 60px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
                         <br><br>
-                        <button type="submit" class="btn-aggiungi">Aggiungi al Carrello</button>
+                        
+                        <% if(p.getQuantita() > 0) { %>
+                            <button type="submit" class="btn-save" style="width: 100%;">Aggiungi al Carrello</button>
+                        <% } else { %>
+                            <button type="button" disabled style="width: 100%; padding: 10px; background: #6c757d; color: white; border: none; border-radius: 4px; font-weight: bold;">Esaurito</button>
+                        <% } %>
                     </form>
                 </div>
             <% 
                     }
                 } else {
             %>
-                <p>Nessun prodotto disponibile al momento.</p>
+                <p style="width: 100%; text-align: center; color: #666; font-style: italic;">Nessun prodotto disponibile al momento.</p>
             <% } %>
         </div>
     </main>
