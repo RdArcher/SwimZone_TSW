@@ -65,7 +65,7 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 			try (ResultSet rs = statement.executeQuery()) {
 				if (rs.next()) {
 					bean = new ProdottoBean();
-					bean.setID_prdotto(rs.getInt("id_prodotto"));
+					bean.setID_prodotto(rs.getInt("id_prodotto"));
 					bean.setID_categoria(rs.getInt("id_categoria"));
 					bean.setNome(rs.getString("nome"));
 					bean.setDescrizione(rs.getString("descrizione"));
@@ -92,7 +92,7 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 			try (ResultSet rs = statement.executeQuery()) {
 				while (rs.next()) {
 					ProdottoBean bean = new ProdottoBean();
-					bean.setID_prdotto(rs.getInt("id_prodotto"));
+					bean.setID_prodotto(rs.getInt("id_prodotto"));
 					bean.setID_categoria(rs.getInt("id_categoria"));
 					bean.setNome(rs.getString("nome"));
 					bean.setDescrizione(rs.getString("descrizione"));
@@ -166,7 +166,7 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 			try (ResultSet rs = statement.executeQuery()) {
 				while (rs.next()) {
 					ProdottoBean bean = new ProdottoBean();
-					bean.setID_prdotto(rs.getInt("id_prodotto"));
+					bean.setID_prodotto(rs.getInt("id_prodotto"));
 					bean.setID_categoria(rs.getInt("id_categoria"));
 					bean.setNome(rs.getString("nome"));
 					bean.setDescrizione(rs.getString("descrizione"));
@@ -183,5 +183,18 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 			}
 			return prodotti;
 		}
+	}
+	
+	public void aggiornaQuantita(int id_prodotto, int quantitaAcquistata) throws SQLException {
+	    String updateSQL = "UPDATE Prodotto SET quantita = quantita - ? WHERE id_prodotto = ?";
+	    
+	    try (Connection connection = ds.getConnection();
+	         PreparedStatement statement = connection.prepareStatement(updateSQL)) {
+	        
+	        statement.setInt(1, quantitaAcquistata);
+	        statement.setInt(2, id_prodotto);
+	        
+	        statement.executeUpdate();
+	    }
 	}
 }
