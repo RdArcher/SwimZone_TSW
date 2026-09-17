@@ -75,7 +75,7 @@
                     <td style="color:#28a745; font-weight:bold;">€ <%= String.format("%.2f", o.getTotale()) %></td>
                     <td>
                         <span class="status-badge <%= o.getStato() ? "status-open" : "status-closed" %>">
-                            <%= o.getStato() ? "In elaborazione" : "Evaso" %>
+                            <%= o.getStato() ? "In elaborazione" : "Processato" %>
                         </span>
                     </td>
                     <td>
@@ -83,7 +83,7 @@
                             <input type="hidden" name="id_ordine" value="<%= o.getIdOrdine() %>">
                             <select name="stato" class="admin-input" style="width: auto; padding: 6px;">
                                 <option value="true" <%= o.getStato() ? "selected" : "" %>>In elaborazione</option>
-                                <option value="false" <%= !o.getStato() ? "selected" : "" %>>Evaso</option>
+                                <option value="false" <%= !o.getStato() ? "selected" : "" %>>Processato</option>
                             </select>
                             <button type="submit" class="btn btn-save">Salva</button>
                         </form>
