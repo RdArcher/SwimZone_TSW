@@ -23,7 +23,7 @@ public class ProdottoBean implements Serializable{
         return id_prodotto;
     }
 
-    public void setID_prdotto(int id_prodotto) {
+    public void setID_prodotto(int id_prodotto) {
         this.id_prodotto = id_prodotto;
     }
     
