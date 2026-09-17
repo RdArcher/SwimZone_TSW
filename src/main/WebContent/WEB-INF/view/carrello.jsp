@@ -91,7 +91,9 @@
 							<button type="submit" class="btn-svuota">Svuota Carrello</button>
 						</form>
 						<% if (session.getAttribute("utente") != null) { %>
-							<a href="<%=request.getContextPath()%>/Ordine?azione=checkout" class="btn-checkout">Procedi al Checkout</a>
+							<form action="<%=request.getContextPath()%>/checkout" method="POST"">
+       							 <button type="submit" class="btn-checkout">Procedi al Checkout</button>
+    						</form>
 						<% } else { %>
 							<a href="<%=request.getContextPath()%>/LoginServlet?from=carrello" class="btn-checkout">Accedi per continuare</a>
 						<% } %>
