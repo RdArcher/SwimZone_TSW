@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Carrello</title>
-<!-- Collegamento al file CSS globale -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/carrello.css">
 </head>
 <body>
 	<header>
@@ -21,7 +20,7 @@
 				<li><a href="<%=request.getContextPath()%>/Prodotti">Prodotti</a></li>
 				
 				<% if (session.getAttribute("utente") != null) { %>
-					<li><a href="<%=request.getContextPath()%>/ordini">I miei ordini</a></li>
+					<li><a href="<%=request.getContextPath()%>/Ordini">I miei ordini</a></li>
 					<li><a href="<%=request.getContextPath()%>/logout">Disconnetti</a></li>
 				<% } else { %>
 					<li><a href="<%=request.getContextPath()%>/LoginServlet">Accedi</a></li>
