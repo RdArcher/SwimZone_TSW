@@ -83,6 +83,11 @@
     box-sizing: border-box;
 }
 
+.esaurito{
+	 color: #dc3545;
+	 font-weight: bold;
+}
+
 .btn-add {
     background-color: #28a745;
     color: white;
