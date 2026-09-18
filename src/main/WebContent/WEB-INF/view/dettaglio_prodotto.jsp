@@ -64,7 +64,7 @@
 								<button type="submit" class="btn-add">Aggiungi al Carrello</button>
 							</form>
 						<% } else { %>
-							<p class="esaurito" style="color: #dc3545; font-weight: bold;">Prodotto esaurito</p>
+							<p class="esaurito">Prodotto esaurito</p>
 						<% } %>
 						
 						<a href="<%=request.getContextPath()%>/Prodotti" class="btn-back">Torna al catalogo</a>
