@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+/* =========================================
+   IMPOSTAZIONI GLOBALI
+   ========================================= */
+body {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    margin: 0;
+    padding-top: 130px; /* Spazio per l'header fisso */
+    background-color: #F4F8FB; 
+}
+
+/* =========================================
+   CONTENITORE PRINCIPALE E TITOLI
+   ========================================= */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.container h1 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* =========================================
+   MESSAGGI DI ASSENZA DATI (Carrello vuoto / Nessun ordine)
+   ========================================= */
+.msg_errore {
+    background-color: #f9f9f9;
+    border: 1px dashed #ccc;
+    padding: 40px 20px;
+    text-align: center;
+    color: #555;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #333;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    margin-top: 15px;
+}
+
+.btn-back:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* =========================================
+   TABELLE (Carrello e Storico Ordini)
+   ========================================= */
+.tabella-carrello {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background-color: #fff; /* Sfondo bianco per staccare dal body */
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05); /* Leggerissima ombra per dare profondità */
+}
+
+.tabella-carrello th, 
+.tabella-carrello td {
+    padding: 15px 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabella-carrello th {
+    background-color: #f4f4f4;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* Effetto hover sulle righe della tabella per facilitare la lettura */
+.tabella-carrello tbody tr:hover {
+    background-color: #fdfdfd;
+}
+
+.tabella-carrello form {
+    margin: 0; 
+}
