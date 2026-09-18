@@ -6,7 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>I miei ordini - SwimZone</title>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/ordini.css">
+     <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/home.css">
 </head>
 <body>
     <header>
@@ -51,7 +52,7 @@
                             <td><%= o.getData() %></td>
                             <td>&euro; <%= String.format("%.2f", o.getTotale()) %></td>
                             <td><%= o.getUtente() != null ? o.getUtente().getIndirizzoSpedizione() : "N/D" %></td>
-                            <td><%= o.getStato() ? "Confermato / Attivo" : "Annullato" %></td>
+                            <td><%= o.getStato() ? "In corso" : "Processato" %></td>
                         </tr>
                     <% } %>
                 </tbody>
