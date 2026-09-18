@@ -75,6 +75,22 @@ public class CarrelloServlet extends HttpServlet{
 				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				return;
 			}
+
+			
+			// AJAX
+			String isAjax = request.getParameter("ajax");
+			if (isAjax != null && isAjax.equals("true")) {
+				int totaleArticoli = 0;
+				for (CarrelloBean item : carrello) {
+					totaleArticoli += item.getQuantita();
+				}
+				
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write("{\"status\":\"success\", \"totaleArticoli\":" + totaleArticoli + "}");
+				return;
+			}
+			// fine AJAX
 			
 			if(azione.equals("mostraCarrello")) {
 				RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/view/carrello.jsp");
