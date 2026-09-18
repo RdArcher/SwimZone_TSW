@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="model.UtenteBean" %>
 <% 
-    // Recupero l'utente dalla sessione per precompilare i campi
     UtenteBean utente = (UtenteBean) session.getAttribute("utente"); 
 %>
 <!DOCTYPE html>
@@ -20,7 +19,7 @@
                 <li><a href="<%=request.getContextPath()%>/home">Home</a></li>
                 <li><a href="<%=request.getContextPath()%>/Prodotti">Prodotti</a></li>
                 <li><a href="<%=request.getContextPath()%>/Carrello">Carrello</a></li>
-                <li><a href="<%=request.getContextPath()%>/ordini">I miei ordini</a></li>
+                <li><a href="<%=request.getContextPath()%>/Ordini">I miei ordini</a></li>
                 <li><a href="<%=request.getContextPath()%>/logout">Disconnetti</a></li>
             </ul>
         </nav>
