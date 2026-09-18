@@ -74,5 +74,7 @@
             <% } %>
         </div>
     </main>
+    
+    <script src="script/carrelloAJ.js"></script>
 </body>
 </html>
