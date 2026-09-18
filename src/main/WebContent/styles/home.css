@@ -201,10 +201,6 @@ footer {
     transition: transform 0.2s;
 }
 
-.info-card:hover {
-    transform: translateY(-5px);
-}
-
 .info-card h3 {
     color: #007BFF; 
     font-size: 1.5rem;
