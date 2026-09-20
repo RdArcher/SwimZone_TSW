@@ -38,19 +38,11 @@
     </header>
 
     <main>
-        <% String acquisto = request.getParameter("acquisto");
-           if ("successo".equals(acquisto)) { %>
-            <div style="color: green; text-align: center; padding: 15px; font-weight: bold; background-color: #e8f5e9;">
-                <p>Grazie per il tuo acquisto! Il tuo ordine è stato registrato con successo.</p>
-            </div>
-        <% } %>
-
-
-        <div class="hero-section">
+        <div class="m_section">
             <img src="images/piscina_desktop.png" alt="Sfondo Piscina" id="fotoHomeDesktop">
             <img src="images/piscina_mobile.jpg" alt="Sfondo Piscina Mobile" id="fotoHomeTelefono">
             
-            <div class="hero-testo">
+            <div class="m-testo">
                 <h1>Domina l'acqua con stile</h1>
                 <p>L'equipaggiamento perfetto per la tua passione, dalla piscina alle competizioni.</p>
                 <br>
