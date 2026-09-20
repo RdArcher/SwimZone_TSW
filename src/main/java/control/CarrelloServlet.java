@@ -80,14 +80,10 @@ public class CarrelloServlet extends HttpServlet{
 			// AJAX
 			String isAjax = request.getParameter("ajax");
 			if (isAjax != null && isAjax.equals("true")) {
-				int totaleArticoli = 0;
-				for (CarrelloBean item : carrello) {
-					totaleArticoli += item.getQuantita();
-				}
 				
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
-				response.getWriter().write("{\"status\":\"success\", \"totaleArticoli\":" + totaleArticoli + "}");
+				response.getWriter().write("{\"status\":\"success\"}");
 				return;
 			}
 			// fine AJAX
