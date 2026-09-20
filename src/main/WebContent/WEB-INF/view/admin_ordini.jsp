@@ -74,9 +74,9 @@
                     <td><%= (o.getUtente() != null && o.getUtente().getIndirizzoSpedizione() != null) ? o.getUtente().getIndirizzoSpedizione() : "-" %></td>
                     <td style="color:#28a745; font-weight:bold;">€ <%= String.format("%.2f", o.getTotale()) %></td>
                     <td>
-                        <span class="status-badge <%= o.getStato() ? "status-open" : "status-closed" %>">
+                        
                             <%= o.getStato() ? "In elaborazione" : "Processato" %>
-                        </span>
+                        
                     </td>
                     <td>
                         <form class="form-status" action="<%=request.getContextPath()%>/admin_ordini" method="POST">
@@ -85,7 +85,7 @@
                                 <option value="true" <%= o.getStato() ? "selected" : "" %>>In elaborazione</option>
                                 <option value="false" <%= !o.getStato() ? "selected" : "" %>>Processato</option>
                             </select>
-                            <button type="submit" class="btn btn-save">Salva</button>
+                            <button type="submit">Salva</button>
                         </form>
                     </td>
                 </tr>
