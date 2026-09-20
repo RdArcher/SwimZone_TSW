@@ -31,8 +31,17 @@ public class AdminProdottiServlet extends HttpServlet {
         
         DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
         ProdottoDAOImpl dao = new ProdottoDAOImpl(ds);
+        String action = request.getParameter("action");
         
         try {
+            if ("edit".equals(action)) {
+                int id = Integer.parseInt(request.getParameter("id_prodotto"));
+                ProdottoBean prodotto = dao.cercaProdotto(id);
+                request.setAttribute("prodotto", prodotto);
+                request.getRequestDispatcher("/WEB-INF/view/modifica_prodotto.jsp").forward(request, response);
+                return;
+            }
+            
             request.setAttribute("prodotti", dao.doRetrieveAll(""));
             request.getRequestDispatcher("/WEB-INF/view/admin_prodotti.jsp").forward(request, response);
         } catch (SQLException e) {
@@ -65,12 +74,12 @@ public class AdminProdottiServlet extends HttpServlet {
                 Part filePart = request.getPart("immagine");
                 String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 
-                String uploadPath = getServletContext().getRealPath("") + File.separator + "images";
+                String uploadPath = getServletContext().getRealPath("") + "/images";
                 File uploadDir = new File(uploadPath);
                 if (!uploadDir.exists()) {
                     uploadDir.mkdir();
                 }
-                filePart.write(uploadPath + File.separator + fileName);
+                filePart.write(uploadPath + "/" + fileName);
                 
                 p.setPath("images/" + fileName);
                 p.setMimeType(filePart.getContentType());
@@ -80,6 +89,19 @@ public class AdminProdottiServlet extends HttpServlet {
             } else if ("delete".equals(action)) {
                 int id = Integer.parseInt(request.getParameter("id_prodotto"));
                 dao.eliminaProdotto(id);
+                
+            } else if ("update".equals(action)) {
+                ProdottoBean p = new ProdottoBean();
+                p.setID_prodotto(Integer.parseInt(request.getParameter("id_prodotto")));
+                p.setNome(request.getParameter("nome"));
+                p.setID_categoria(Integer.parseInt(request.getParameter("id_categoria")));
+                p.setColore(request.getParameter("colore"));
+                p.setTaglia(request.getParameter("taglia"));
+                p.setDescrizione(request.getParameter("descrizione"));
+                p.setPrezzo(Float.parseFloat(request.getParameter("prezzo")));
+                p.setQuantita(Integer.parseInt(request.getParameter("quantita")));
+                
+                dao.AggiornaProdotto(p);
             }
         } catch (Exception e) {
             e.printStackTrace();

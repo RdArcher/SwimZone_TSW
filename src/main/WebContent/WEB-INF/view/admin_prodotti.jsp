@@ -108,8 +108,9 @@
                                 <input type="hidden" name="id_prodotto" value="<%= p.getID_prodotto() %>">
                                 <button type="submit" class="btn-admin btn-rosso">Rimuovi</button>
                             </form>
+                                <a href="<%=request.getContextPath()%>/admin_prodotti?action=edit&id_prodotto=<%= p.getID_prodotto() %>" class="btn-admin btn-grigio">Modifica</a>
                         </td>
-                    </tr>
+                     </tr>
                     <%     } 
                        } else { %>
                     <tr>
