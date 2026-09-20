@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-/* --- CONTENITORI ADMIN --- */
 .admin-sezione {
     background: #f9f9f9;
     padding: 20px;
@@ -104,5 +103,33 @@
     color: white;
     font-weight: bold;
 }
-.admin-status.attivo { background-color: #28a745; }
-.admin-status.chiuso { background-color: #6c757d; }
+
+@media screen and (max-width: 768px) {
+    .admin-sezione {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .admin-filtri {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    .admin-filtri .admin-form-group {
+        width: 100%;
+    }
+
+    .admin-sezione form > .btn-admin {
+        width: 100%;
+        text-align: center;
+        padding: 12px 15px;
+        box-sizing: border-box;
+    }
+
+    .admin-tabella th, 
+    .admin-tabella td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+}
