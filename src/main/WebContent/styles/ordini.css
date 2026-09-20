@@ -1,18 +1,12 @@
 @charset "UTF-8";
 
-/* =========================================
-   IMPOSTAZIONI GLOBALI
-   ========================================= */
 body {
     font-family: Georgia, "Times New Roman", Times, serif;
     margin: 0;
-    padding-top: 130px; /* Spazio per l'header fisso */
+    padding-top: 130px;
     background-color: #F4F8FB; 
 }
 
-/* =========================================
-   CONTENITORE PRINCIPALE E TITOLI
-   ========================================= */
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -26,9 +20,6 @@ body {
     color: #333;
 }
 
-/* =========================================
-   MESSAGGI DI ASSENZA DATI (Carrello vuoto / Nessun ordine)
-   ========================================= */
 .msg_errore {
     background-color: #f9f9f9;
     border: 1px dashed #ccc;
@@ -54,15 +45,11 @@ body {
     color: #fff;
 }
 
-/* =========================================
-   TABELLE (Carrello e Storico Ordini)
-   ========================================= */
 .tabella-carrello {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 30px;
-    background-color: #fff; /* Sfondo bianco per staccare dal body */
-    box-shadow: 0 1px 5px rgba(0,0,0,0.05); /* Leggerissima ombra per dare profondità */
+    background-color: #fff;
 }
 
 .tabella-carrello th, 
@@ -80,7 +67,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Effetto hover sulle righe della tabella per facilitare la lettura */
 .tabella-carrello tbody tr:hover {
     background-color: #fdfdfd;
 }
