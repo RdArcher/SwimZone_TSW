@@ -112,20 +112,24 @@ public class ProdottoDAOImpl implements ProdottoDAO {
 	}
 	
 	public boolean AggiornaProdotto(ProdottoBean prodotto) throws SQLException {
-		String updateSQL = "UPDATE Prodotto SET nome = ?, descrizione = ?, prezzo = ?, quantita = ? WHERE id_prodotto = ?";
-		
-		try (Connection connection = ds.getConnection();
-			 PreparedStatement statement = connection.prepareStatement(updateSQL)) {
-			
-			statement.setString(1, prodotto.getNome());
-			statement.setString(2, prodotto.getDescrizione());
-			statement.setFloat(3, prodotto.getPrezzo());
-			statement.setInt(4, prodotto.getQuantita());
-			statement.setInt(5, prodotto.getID_prodotto());
-			
-			int r = statement.executeUpdate();
-			return r > 0;
-		}
+	    String updateSQL = "UPDATE Prodotto SET nome = ?, id_categoria = ?, colore = ?, taglia = ?, descrizione = ?, prezzo = ?, quantita = ? WHERE id_prodotto = ?";
+	    
+	    try (Connection connection = ds.getConnection();
+	         PreparedStatement statement = connection.prepareStatement(updateSQL)) {
+	        
+	        statement.setString(1, prodotto.getNome());
+	        statement.setInt(2, prodotto.getID_categoria());
+	        statement.setString(3, prodotto.getColore());
+	        statement.setString(4, prodotto.getTaglia());
+	        statement.setString(5, prodotto.getDescrizione());
+	        statement.setFloat(6, prodotto.getPrezzo());
+	        statement.setInt(7, prodotto.getQuantita());
+	        
+	        statement.setInt(8, prodotto.getID_prodotto());
+	        
+	        int r = statement.executeUpdate();
+	        return r > 0;
+	    }
 	}
 	
 	public boolean AttivaProdotto(int id_prodotto) throws SQLException {
