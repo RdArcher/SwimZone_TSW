@@ -43,8 +43,7 @@ header a:link, header a:visited {
     color: #FFFFFF;
     font-family: Georgia, "Times New Roman", Times, serif;
     font-size: 1.2rem;
-    font-weight: bold;
-    transition: opacity 0.2s;
+    font-weight: bold;;
     text-decoration: none;
 }
 

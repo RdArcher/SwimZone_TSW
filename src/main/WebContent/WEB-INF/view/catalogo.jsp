@@ -5,6 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/logo.png">
     <title>Catalogo - SwimZone</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/catalogo.css">
 </head>

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/logo.png">
 <title>Carrello</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/carrello.css">
 </head>

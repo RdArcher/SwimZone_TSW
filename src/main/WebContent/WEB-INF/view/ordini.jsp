@@ -5,6 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/logo.png">
     <title>I miei ordini - SwimZone</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/ordini.css">
      <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/home.css">

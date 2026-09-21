@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/logo.png">
     <title>Modifica Prodotto - Admin</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/home.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/admin.css">
