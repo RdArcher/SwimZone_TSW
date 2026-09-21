@@ -17,7 +17,7 @@
                 <% if (session.getAttribute("utente") != null) { %>
                     <li><a href="<%=request.getContextPath()%>/Ordini">I miei ordini</a></li>
                     <li><a href="<%=request.getContextPath()%>/Carrello">Carrello</a></li>
-                    <li><a href="<%=request.getContextPath()%>/LoginServlet">Disconnetti</a></li>
+                    <li><a href="<%=request.getContextPath()%>/logout">Disconnetti</a></li>
                 <% } else { %>
                     <li><a href="<%=request.getContextPath()%>/LoginServlet">Accedi</a></li>
                 <% } %>

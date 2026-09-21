@@ -17,7 +17,7 @@
                 <li><a href="<%=request.getContextPath()%>/home">Home</a></li>
                 <li><a href="<%=request.getContextPath()%>/Prodotti">Prodotti</a></li>
                 <li><a href="<%=request.getContextPath()%>/Carrello">Carrello</a></li>
-                <li><a href="<%=request.getContextPath()%>/LoginServlet">Disconnetti</a></li>
+                <li><a href="<%=request.getContextPath()%>/logout">Disconnetti</a></li>
             </ul>
         </nav>
     </header>

@@ -12,7 +12,6 @@
 <body>
 	<header>
 		<a href="<%=request.getContextPath()%>/home">
-			<!-- Logo -->
 		</a>
 		
 		<nav>
