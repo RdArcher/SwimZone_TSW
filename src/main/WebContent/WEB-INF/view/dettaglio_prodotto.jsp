@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/logo.png">
 <title>Dettaglio Prodotto</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/dettaglio.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/home.css">
@@ -11,7 +12,6 @@
 <body>
 	<header>
 		<a href="<%=request.getContextPath()%>/home">
-			<!-- Immagine logo -->
 		</a>
 		
 		<nav>
