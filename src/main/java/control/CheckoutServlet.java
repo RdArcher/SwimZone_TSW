@@ -31,7 +31,6 @@ public class CheckoutServlet extends HttpServlet {
             return;
         }
 
-        @SuppressWarnings("unchecked")
         List<CarrelloBean> carrello = (List<CarrelloBean>) session.getAttribute("carrello");
 
         if (carrello == null || carrello.isEmpty()) {
