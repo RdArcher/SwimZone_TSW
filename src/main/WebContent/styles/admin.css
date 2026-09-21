@@ -36,10 +36,6 @@
     box-sizing: border-box;
     font-family: inherit;
 }
-.admin-form-group {
-    margin-bottom: 0;
-    width: auto;
-}
 
 .admin-tabella-container {
     width: 100%;
